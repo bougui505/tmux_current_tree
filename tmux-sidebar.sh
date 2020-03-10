@@ -7,5 +7,5 @@
 
 DIRSCRIPT="$(dirname "$(readlink -f "$0")")"
 cd $DIRSCRIPT
-tmux -2 splitw -h ./tmux_current_tree.sh
+tmux -2 splitw -l 40 -h ./tmux_current_tree.sh
 tmux last-pane
