@@ -12,7 +12,13 @@ while :; do
     MD5_=$(stat $PANEDIR | md5sum | awk '{print $1}')
     if [ $DISPLAYDIR != $PANEDIR ] || [ $MD5_ != $MD5 ]; then
         clear
-        exa -snew -T -L 2 --color='always' "$PANEDIR"
+        OUTPUT=$(exa -snew -T -L 2 --color='always' "$PANEDIR")
+        NLINES=$(echo $OUTPUT | wc -l)
+        if [ $NLINES -lt 40 ]; then
+            echo $OUTPUT
+        else
+            exa -snew -T -L 1 --color='always' "$PANEDIR"
+        fi
     fi
     DISPLAYDIR=$PANEDIR
     MD5=$MD5_
