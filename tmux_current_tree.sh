@@ -8,6 +8,6 @@
 while :; do
     PANEDIR=$(tmux display-message -p -F '#{pane_current_path}')
     clear
-    exa -T -L 1 --color='always' "$PANEDIR"
+    exa -snew -T -L 1 --color='always' "$PANEDIR"
     sleep 1
 done
