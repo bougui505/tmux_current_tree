@@ -12,12 +12,17 @@ while :; do
     MD5_=$(stat $PANEDIR | md5sum | awk '{print $1}')
     if [ $DISPLAYDIR != $PANEDIR ] || [ $MD5_ != $MD5 ]; then
         clear
-        OUTPUT=$(exa -snew -T -L 2 --color='always' "$PANEDIR")
+        NFILES=$(ls "$PANEDIR" | wc -w)
+        if [ $NFILES -lt 40 ]; then
+            OUTPUT=$(tree -C -L 2 --filelimit 40 -t "$PANEDIR")
+        else
+            OUTPUT=$(tree -C -L 1 -t "$PANEDIR")
+        fi
         NLINES=$(echo $OUTPUT | wc -l)
-        if [ $NLINES -lt 40 ]; then
+        if [ $NLINES -lt 45 ]; then
             echo $OUTPUT
         else
-            exa -snew -T -L 1 --color='always' "$PANEDIR"
+            tree -C -L 1 -t "$PANEDIR"
         fi
     fi
     DISPLAYDIR=$PANEDIR
