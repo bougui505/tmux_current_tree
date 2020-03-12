@@ -14,15 +14,15 @@ while :; do
         clear
         NFILES=$(ls "$PANEDIR" | wc -w)
         if [ $NFILES -lt 40 ]; then
-            OUTPUT=$(tree -l -C -L 2 --filelimit 40 -t "$PANEDIR")
+            OUTPUT=$(tree -I __pycache__ -l -C -L 2 --filelimit 40 -t "$PANEDIR")
         else
-            OUTPUT=$(tree -l -C -L 1 -t "$PANEDIR")
+            OUTPUT=$(tree -I __pycache__ -l -C -L 1 -t "$PANEDIR")
         fi
         NLINES=$(echo $OUTPUT | wc -l)
         if [ $NLINES -lt 45 ]; then
             echo $OUTPUT
         else
-            tree -l -C -L 1 -t "$PANEDIR"
+            tree -I __pycache__ -l -C -L 1 -t "$PANEDIR"
         fi
     fi
     DISPLAYDIR=$PANEDIR
