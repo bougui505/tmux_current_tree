@@ -14,15 +14,15 @@ while :; do
         clear
         NFILES=$(ls "$PANEDIR" | wc -w)
         if [ $NFILES -lt 40 ]; then
-            OUTPUT=$(tree -C -L 2 --filelimit 40 -t "$PANEDIR")
+            OUTPUT=$(tree -l -C -L 2 --filelimit 40 -t "$PANEDIR")
         else
-            OUTPUT=$(tree -C -L 1 -t "$PANEDIR")
+            OUTPUT=$(tree -l -C -L 1 -t "$PANEDIR")
         fi
         NLINES=$(echo $OUTPUT | wc -l)
         if [ $NLINES -lt 45 ]; then
             echo $OUTPUT
         else
-            tree -C -L 1 -t "$PANEDIR"
+            tree -l -C -L 1 -t "$PANEDIR"
         fi
     fi
     DISPLAYDIR=$PANEDIR
