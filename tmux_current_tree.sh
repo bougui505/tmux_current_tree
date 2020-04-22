@@ -13,7 +13,7 @@ DISPLAYDIR='None'
 TIMESTAMP='XXX'
 while :; do
     PANEDIR=$(tmux display-message -p -F '#{pane_current_path}')
-    TIMESTAMP_=$(find . -name '*' -not -path '*/\.*' | xargs stat -c %Y "$PANEDIR/." | sort -n | tail -1)
+    TIMESTAMP_=$(find . -maxdepth 0 -name '*' -not -path '*/\.*' | xargs stat -c %Y "$PANEDIR/." | sort -n | tail -1)
     if [ $DISPLAYDIR != $PANEDIR ] || [ $TIMESTAMP_ != $TIMESTAMP ]; then
         NEWFILES=$(exa -lh -snew --git --time-style full-iso --links | awk '{Time=$5" "$6
                     gsub("[-,:]", " ", Time)
