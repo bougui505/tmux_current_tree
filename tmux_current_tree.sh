@@ -13,7 +13,7 @@ DISPLAYDIR='None'
 TIMESTAMP='XXX'
 while :; do
     PANEDIR=$(tmux display-message -p -F '#{pane_current_path}')
-    TIMESTAMP_=$(stat -c %Y "$PANEDIR/*" | sort -n | tail -1)
+    TIMESTAMP_=$(stat -c %Y $PANEDIR/* | sort -n | tail -1)
     if [ $DISPLAYDIR != $PANEDIR ] || [ $TIMESTAMP_ != $TIMESTAMP ]; then
         NEWFILES=$(find $PANEDIR/* -maxdepth 0 -name '*' -cmin -5 -not -path '*/\.*' -type f -exec basename {}"|" \;|sed 's/.$//')
         NEWFILES="${NEWFILES}|'__NONE__'"
