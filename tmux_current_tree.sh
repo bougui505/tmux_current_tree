@@ -22,6 +22,7 @@ while :; do
                     if (delta<300){
                         print $9}
                     }' | tr '\n' '|'|sed 's/.$//')
+        NEWFILES="${NEWFILES}|'__NONE__'"
         clear
         NFILES=$(ls "$PANEDIR" | wc -w)
         if [ $NFILES -lt 40 ]; then
