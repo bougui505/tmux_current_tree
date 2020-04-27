@@ -9,7 +9,7 @@ DISPLAYDIR='None'
 TIMESTAMP='XXX'
 while :; do
     PANEDIR=$(tmux display-message -p -F '#{pane_current_path}')
-    TIMESTAMP_=$(stat -c %Y $PANEDIR/* | sort -n | tr -d "\n")
+    TIMESTAMP_=$(stat -c %n%Y $PANEDIR/* | sort -n | tr -d "\n")
     if [ $DISPLAYDIR != $PANEDIR ] || [ $TIMESTAMP_ != $TIMESTAMP ]; then
         clear
         NFILES=$(ls "$PANEDIR" | wc -w)
